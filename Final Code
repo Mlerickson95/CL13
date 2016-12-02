@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct College
+{
+public:
+	string name;
+	string state;
+};
+
+struct Student
+{
+public:
+	string name;
+	College* ptrSchool;
+};
+
+int main()
+{
+	College colleges[3];
+	colleges[0].name = "JCCC";
+	colleges[1].name = "MCCKC";
+	colleges[2].name = "KCKCC";
+	colleges[0].state = "KS";
+	colleges[1].state = "MO";
+	colleges[2].state = "KS";
+
+	Student students[5];
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Student #: " << i << ", Student Name: ";
+		cin >> students[i].name;
+		cout << endl;
+		for (int c = 0; c < 3; c++)
+		{
+			cout << "College index: " << c << ", State: " << colleges[c].state << ", Name: " << colleges[c].name << endl;
+		}
+
+		cout << endl;
+
+		cout << "Student's college index: ";
+		int index;
+		cin >> index;
+		cout << endl;
+		students[i].ptrSchool = &colleges[index];
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Name: " << students[i].name << ", ID: " << i << ", School Name: " << students[i].ptrSchool->name << ", State: " << students[i].ptrSchool->state << endl;
+	}
+	return 0;
+}
